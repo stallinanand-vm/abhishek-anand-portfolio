@@ -6,7 +6,7 @@ const projects = [
     category: "Regional VM",
     description: "Leading VM strategy and execution across 12 East Region stores. Current work includes Diamond Campaign visual changeover, vendor cost comparison and the East Rising FY27 regional sub-brand identity.",
     tags: ["VM Strategy","Jewellery","East Region"],
-    image: "images/indriya/indriya-01.jpg"
+    image: "indriya-01.jpg"
   },
   {
     title: "VM Excellence & Brand Identity",
@@ -15,7 +15,7 @@ const projects = [
     category: "VM Excellence",
     description: "Rolled out VM SOPs and a new brand identity across 200+ stores, reduced vendor costs by 25%, and improved VM inventory systems to reduce delays and costs.",
     tags: ["SOP","Brand Identity","Cost Optimisation"],
-    image: "images/indriya/indriya-02.jpg"
+    image: "indriya-02.jpg"
   },
   {
     title: "Pan-India VM — Max",
