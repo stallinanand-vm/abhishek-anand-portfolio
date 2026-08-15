@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio Manager — Abhishek Anand</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f2ee;margin:0;color:#111}.wrap{max-width:900px;margin:40px auto;padding:20px}
+h1{font-size:42px}.note{background:#fff;padding:18px;border:1px solid #ddd}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{font-size:12px;font-weight:700;display:block;margin-bottom:5px}input,textarea{width:100%;padding:11px;border:1px solid #ccc;box-sizing:border-box}textarea{min-height:110px}
+.full{grid-column:1/-1}button{padding:12px 18px;border:0;background:#111;color:#fff;cursor:pointer;margin:8px 8px 0 0}
+#output{white-space:pre-wrap;background:#171717;color:#eee;padding:18px;margin-top:20px;overflow:auto}
+@media(max-width:650px){.grid{grid-template-columns:1fr}}
+</style></head>
+<body><div class="wrap">
+<h1>Portfolio Manager</h1>
+<div class="note"><b>How this works:</b> enter a future project, click Generate, then replace the contents of <code>projects.js</code> in the website package with the generated code. This keeps the public site easy to update without redesigning it.</div>
+<div class="grid" style="margin-top:22px">
+<div><label>Project title</label><input id="title"></div>
+<div><label>Brand</label><input id="brand"></div>
+<div><label>Year</label><input id="year" value="2026"></div>
+<div><label>Category</label><input id="category" placeholder="Store Experience"></div>
+<div class="full"><label>Description</label><textarea id="description"></textarea></div>
+<div><label>Tags (comma separated)</label><input id="tags" placeholder="VM, Retail, NSO"></div>
+<div><label>Image path</label><input id="image" placeholder="images/project-name.jpg"></div>
+</div>
+<button onclick="generate()">Generate project entry</button>
+<button onclick="copyCode()">Copy generated code</button>
+<pre id="output">// Your generated project entry will appear here.</pre>
+<script>
+let last="";
+function val(id){return document.getElementById(id).value.trim()}
+function esc(s){return s.replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g," ")}
+function generate(){
+ const tags=val("tags").split(",").map(x=>`"${esc(x.trim())}"`).filter(x=>x!=='""').join(", ");
+ last=`  {
+    title: "${esc(val("title"))}",
+    brand: "${esc(val("brand"))}",
+    year: "${esc(val("year"))}",
+    category: "${esc(val("category"))}",
+    description: "${esc(val("description"))}",
+    tags: [${tags}],
+    image: "${esc(val("image"))}"
+  },`;
+ document.getElementById("output").textContent=last;
+}
+async function copyCode(){if(!last)generate();await navigator.clipboard.writeText(last);alert("Copied. Paste this object into projects.js.");}
+</script></div></body></html>
